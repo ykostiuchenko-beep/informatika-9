@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тренажер з інформатики: Стилі у текстових документах (9 клас)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Merriweather', 'serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            800: '#1e40af',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+        .page-shadow {
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans min-h-screen flex flex-col">
+
+    <!-- Header Navigation Bar -->
+    <header class="bg-slate-900 text-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-3">
+                    <div class="bg-brand-600 p-2 rounded-lg text-white">
+                        <i class="fa-solid me-0.5 fa-file-word text-xl"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-lg font-bold leading-tight">Інформатика 9 клас</h1>
+                        <p class="text-xs text-slate-400">Тема: Стилі в текстових документах</p>
+                    </div>
+                </div>
+
+                <!-- Progress & Score Badge -->
+                <div class="flex items-center space-x-4">
+                    <div class="hidden md:flex items-center bg-slate-800 px-3 py-1.5 rounded-full border border-slate-700">
+                        <i class="fa-solid fa-trophy text-amber-400 mr-2"></i>
+                        <span class="text-xs text-slate-300">Бали:</span>
+                        <span id="header-score" class="ml-1 text-sm font-bold text-amber-400">0 / 100</span>
+                    </div>
+                    <div class="hidden sm:flex items-center bg-slate-800 px-3 py-1.5 rounded-full border border-slate-700">
+                        <i class="fa-solid fa-tasks text-emerald-400 mr-2"></i>
+                        <span class="text-xs text-slate-300">Прогрес:</span>
+                        <span id="header-progress" class="ml-1 text-sm font-bold text-emerald-400">0%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <div class="bg-slate-800 border-t border-slate-700">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex space-x-1 sm:space-x-4 overflow-x-auto py-2 custom-scrollbar">
+                <button onclick="switchTab('theory')" id="tab-theory" class="tab-btn px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center whitespace-nowrap bg-brand-600 text-white">
+                    <i class="fa-solid fa-book-open mr-2"></i> 1. Експрес-Теорія
+                </button>
+                <button onclick="switchTab('practice')" id="tab-practice" class="tab-btn px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center whitespace-nowrap text-slate-300 hover:text-white hover:bg-slate-700">
+                    <i class="fa-solid fa-laptop-code mr-2"></i> 2. Практичний Симулятор
+                </button>
+                <button onclick="switchTab('quiz')" id="tab-quiz" class="tab-btn px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center whitespace-nowrap text-slate-300 hover:text-white hover:bg-slate-700">
+                    <i class="fa-solid fa-list-check mr-2"></i> 3. Перевірка Знань (Тест)
+                </button>
+                <button onclick="switchTab('report')" id="tab-report" class="tab-btn px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center whitespace-nowrap text-slate-300 hover:text-white hover:bg-slate-700">
+                    <i class="fa-solid fa-award mr-2"></i> 4. Підсумки та Сертифікат
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8">
+
+        <!-- ==================== TAB 1: THEORY ==================== -->
+        <section id="content-theory" class="tab-content space-y-6">
+            <div class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm">
+                <div class="max-w-3xl">
+                    <span class="inline-block px-3 py-1 bg-brand-100 text-brand-700 rounded-full text-xs font-semibold uppercase tracking-wider mb-3">Опорний конспект</span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-4">Що таке стилі та навіщо вони потрібні?</h2>
+                    <p class="text-slate-600 leading-relaxed text-base mb-6">
+                        <strong class="text-slate-800">Стиль</strong> — це набір параметрів форматування (шрифт, розмір, колір, вирівнювання, інтервали), збережений під певним іменем для багаторазового використання.
+                    </p>
+                </div>
+
+                <!-- Theoretical Grid Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 my-8">
+                    <div class="bg-slate-50 border border-slate-200 rounded-xl p-5 hover:border-brand-500 transition-all">
+                        <div class="w-12 h-12 bg-blue-500/10 text-blue-600 rounded-lg flex items-center justify-center mb-4 text-xl">
+                            <i class="fa-solid fa-bolt"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-800 text-lg mb-2">Швидкість та зручність</h3>
+                        <p class="text-sm text-slate-600">Замість того, щоб налаштовувати кожен заголовок окремо (5-10 дій), ви застосовуєте готовий стиль в один клік.</p>
+                    </div>
+
+                    <div class="bg-slate-50 border border-slate-200 rounded-xl p-5 hover:border-brand-500 transition-all">
+                        <div class="w-12 h-12 bg-emerald-500/10 text-emerald-600 rounded-lg flex items-center justify-center mb-4 text-xl">
+                            <i class="fa-solid fa-sync"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-800 text-lg mb-2">Автоматичне оновлення</h3>
+                        <p class="text-sm text-slate-600">Якщо змінити налаштування стилю (наприклад, колір заголовка), зміни миттєво застосуються до ВСІХ заголовків у документах.</p>
+                    </div>
+
+                    <div class="bg-slate-50 border border-slate-200 rounded-xl p-5 hover:border-brand-500 transition-all">
+                        <div class="w-12 h-12 bg-purple-500/10 text-purple-600 rounded-lg flex items-center justify-center mb-4 text-xl">
+                            <i class="fa-solid fa-sitemap"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-800 text-lg mb-2">Автозміст та Навігація</h3>
+                        <p class="text-sm text-slate-600">Використання стилів "Заголовок 1", "Заголовок 2" дозволяє текстовому процесору автоматично згенерувати Зміст документа.</p>
+                    </div>
+                </div>
+
+                <!-- Style Types Visual Matrix -->
+                <h3 class="text-xl font-bold text-slate-900 mb-4">Класифікація стилів у MS Word / Google Docs</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="border border-slate-200 rounded-xl p-4 bg-white">
+                        <span class="text-xs font-bold text-brand-600 uppercase">1. Стиль Абзацу</span>
+                        <h4 class="font-bold text-slate-800 mt-1 mb-2">¶ Абзацний</h4>
+                        <p class="text-xs text-slate-500">Застосовується до всього абзацу. Визначає шрифт, вирівнювання, міжрядковий інтервал, відступи.</p>
+                    </div>
+                    <div class="border border-slate-200 rounded-xl p-4 bg-white">
+                        <span class="text-xs font-bold text-emerald-600 uppercase">2. Стиль Знаку</span>
+                        <h4 class="font-bold text-slate-800 mt-1 mb-2">a Символьний</h4>
+                        <p class="text-xs text-slate-500">Застосовується до окремих виділених слів чи літер. Визначає гарнітуру, накреслення, колір та розмір шрифту.</p>
+                    </div>
+                    <div class="border border-slate-200 rounded-xl p-4 bg-white">
+                        <span class="text-xs font-bold text-amber-600 uppercase">3. Зв'язаний стиль</span>
+                        <h4 class="font-bold text-slate-800 mt-1 mb-2">¶a Пов'язаний</h4>
+                        <p class="text-xs text-slate-500">Працює як абзацний, якщо виділено весь абзац, або як символьний, якщо виділено лише окреме слово.</p>
+                    </div>
+                    <div class="border border-slate-200 rounded-xl p-4 bg-white">
+                        <span class="text-xs font-bold text-purple-600 uppercase">4. Таблиць та списків</span>
+                        <h4 class="font-bold text-slate-800 mt-1 mb-2">田 Спеціальний</h4>
+                        <p class="text-xs text-slate-500">Визначає зовнішній вигляд сітки таблиць, заливку комірок або формат маркерів/нумерації списку.</p>
+                    </div>
+                </div>
+
+                <div class="mt-8 flex justify-end">
+                    <button onclick="switchTab('practice')" class="bg-brand-600 hover:bg-brand-700 text-white font-semibold px-6 py-3 rounded-xl transition-all flex items-center shadow-md hover:shadow-lg">
+                        Перейти до тренажера-практикуму <i class="fa-solid fa-arrow-right ml-2"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== TAB 2: PRACTICAL SIMULATOR ==================== -->
+        <section id="content-practice" class="tab-content hidden space-y-6">
+            
+            <!-- Missions Checklist Panel -->
+            <div class="bg-white rounded-xl p-5 border border-slate-200 shadow-sm">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-3">
+                    <div>
+                        <h2 class="text-xl font-bold text-slate-900 flex items-center">
+                            <i class="fa-solid fa-list-check text-brand-600 mr-2"></i> Практичне завдання: Оформлення статті
+                        </h2>
+                        <p class="text-xs text-slate-500">Виконай 4 послідовні завдання у симуляторі нижче, щоб отримати бали.</p>
+                    </div>
+                    <button onclick="resetPractice()" class="self-start md:self-auto text-xs text-slate-500 hover:text-slate-800 underline flex items-center">
+                        <i class="fa-solid fa-rotate-right mr-1"></i> Скинути завдання
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+                    <!-- Task 1 -->
+                    <div id="quest-1" class="p-3 rounded-lg border border-slate-200 bg-slate-50 transition-all">
+                        <div class="flex items-center justify-between mb-1">
+                            <span class="text-xs font-bold text-slate-500">Завдання 1</span>
+                            <i id="quest-1-icon" class="fa-regular fa-circle-dot text-slate-400"></i>
+                        </div>
+                        <p class="text-xs font-medium text-slate-800">Застосуй стиль <strong>"Заголовок 1"</strong> до назви теми та <strong>"Заголовок 2"</strong> до 2-х підзаголовків.</p>
+                    </div>
+
+                    <!-- Task 2 -->
+                    <div id="quest-2" class="p-3 rounded-lg border border-slate-200 bg-slate-50 transition-all">
+                        <div class="flex items-center justify-between mb-1">
+                            <span class="text-xs font-bold text-slate-500">Завдання 2</span>
+                            <i id="quest-2-icon" class="fa-regular fa-circle-dot text-slate-400"></i>
+                        </div>
+                        <p class="text-xs font-medium text-slate-800">Зміни стиль <strong>"Заголовок 1"</strong>: встановіть колір синій (#1d4ed8) та розмір 22pt.</p>
+                    </div>
+
+                    <!-- Task 3 -->
+                    <div id="quest-3" class="p-3 rounded-lg border border-slate-200 bg-slate-50 transition-all">
+                        <div class="flex items-center justify-between mb-1">
+                            <span class="text-xs font-bold text-slate-500">Завдання 3</span>
+                            <i id="quest-3-icon" class="fa-regular fa-circle-dot text-slate-400"></i>
+                        </div>
+                        <p class="text-xs font-medium text-slate-800">Зміни стиль <strong>"Основний текст"</strong>: розмір 14pt та шрифтову гарнітуру Серіф (Merriweather).</p>
+                    </div>
+
+                    <!-- Task 4 -->
+                    <div id="quest-4" class="p-3 rounded-lg border border-slate-200 bg-slate-50 transition-all">
+                        <div class="flex items-center justify-between mb-1">
+                            <span class="text-xs font-bold text-slate-500">Завдання 4</span>
+                            <i id="quest-4-icon" class="fa-regular fa-circle-dot text-slate-400"></i>
+                        </div>
+                        <p class="text-xs font-medium text-slate-800">Згенеруй <strong>Автоматичний Зміст</strong> у початку документа.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- WORD PROCESSOR SIMULATOR UI -->
+            <div class="bg-slate-200 rounded-xl border border-slate-300 shadow-xl overflow-hidden flex flex-col">
+                
+                <!-- Mock Title Bar -->
+                <div class="bg-brand-800 text-white px-4 py-2 flex items-center justify-between text-xs">
+                    <div class="flex items-center space-x-2">
+                        <i class="fa-solid fa-file-word text-blue-200"></i>
+                        <span class="font-semibold">Документ_Інформатика_9_Клас.docx — MS Word Simulation</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <span class="bg-brand-700 px-2 py-0.5 rounded text-[10px]">Режим редагування</span>
+                    </div>
+                </div>
+
+                <!-- Mock Ribbon Toolbar -->
+                <div class="bg-slate-50 border-b border-slate-300 p-3 flex flex-wrap gap-4 items-center text-xs">
+                    
+                    <!-- Style Presets Quick Gallery -->
+                    <div class="flex items-center space-x-2 border-r border-slate-300 pr-4">
+                        <span class="font-bold text-slate-500 uppercase text-[10px] block mb-1">Стилі швидко:</span>
+                        <div class="flex space-x-1">
+                            <button onclick="applyStyleToSelected('heading1')" class="px-3 py-2 bg-white hover:bg-slate-100 border border-slate-300 rounded text-slate-900 font-bold text-sm shadow-sm flex flex-col items-center">
+                                <span>Заголовок 1</span>
+                                <span class="text-[9px] text-slate-400 font-normal">H1</span>
+                            </button>
+                            <button onclick="applyStyleToSelected('heading2')" class="px-3 py-2 bg-white hover:bg-slate-100 border border-slate-300 rounded text-slate-800 font-semibold text-xs shadow-sm flex flex-col items-center">
+                                <span>Заголовок 2</span>
+                                <span class="text-[9px] text-slate-400 font-normal">H2</span>
+                            </button>
+                            <button onclick="applyStyleToSelected('normal')" class="px-3 py-2 bg-white hover:bg-slate-100 border border-slate-300 rounded text-slate-600 text-xs shadow-sm flex flex-col items-center">
+                                <span>Звичайний</span>
+                                <span class="text-[9px] text-slate-400 font-normal">Body</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Style Modifier Controls -->
+                    <div class="flex flex-wrap items-center gap-3 border-r border-slate-300 pr-4">
+                        <div>
+                            <label class="block text-[10px] font-bold text-slate-500 uppercase">Редагувати стиль:</label>
+                            <select id="style-target-select" onchange="updateEditorControlsFromStyle()" class="bg-white border border-slate-300 rounded px-2 py-1 text-xs font-semibold focus:outline-none">
+                                <option value="heading1">Стиль: Заголовок 1</option>
+                                <option value="heading2">Стиль: Заголовок 2</option>
+                                <option value="normal">Стиль: Основний (Звичайний)</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-[10px] font-bold text-slate-500 uppercase">Шрифт:</label>
+                            <select id="style-font-family" onchange="modifyStyleProperty('fontFamily', this.value)" class="bg-white border border-slate-300 rounded px-2 py-1 text-xs focus:outline-none">
+                                <option value="Inter">Inter (Sans-Serif)</option>
+                                <option value="Merriweather">Merriweather (Serif)</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-[10px] font-bold text-slate-500 uppercase">Розмір (pt):</label>
+                            <input type="number" id="style-font-size" min="10" max="32" onchange="modifyStyleProperty('fontSize', this.value)" class="w-16 bg-white border border-slate-300 rounded px-2 py-1 text-xs focus:outline-none">
+                        </div>
+
+                        <div>
+                            <label class="block text-[10px] font-bold text-slate-500 uppercase">Колір:</label>
+                            <input type="color" id="style-color" onchange="modifyStyleProperty('color', this.value)" class="w-10 h-7 p-0 bg-white border border-slate-300 rounded cursor-pointer">
+                        </div>
+                    </div>
+
+                    <!-- TOC Generator Button -->
+                    <div class="flex items-center">
+                        <button onclick="insertTOC()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-3 py-2 rounded flex items-center space-x-1 shadow transition-all text-xs">
+                            <i class="fa-solid fa-list-ol"></i>
+                            <span>Вставити Зміст</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Document Canvas Workspace -->
+                <div class="p-4 sm:p-8 bg-slate-300 overflow-y-auto max-h-[600px] flex justify-center custom-scrollbar">
+                    
+                    <!-- Paper Page Mockup -->
+                    <div class="bg-white min-h-[700px] w-full max-w-[720px] p-8 sm:p-12 page-shadow rounded-sm text-slate-800 flex flex-col justify-between transition-all">
+                        
+                        <div>
+                            <!-- Auto Table of Contents Slot -->
+                            <div id="toc-container" class="hidden mb-8 p-4 bg-slate-50 border border-dashed border-slate-300 rounded-lg">
+                                <div class="flex justify-between items-center border-b border-slate-200 pb-2 mb-3">
+                                    <h4 class="font-bold text-slate-800 text-base uppercase tracking-wider">Зміст документа (Автоматичний)</h4>
+                                    <span class="text-[10px] bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded font-bold">Згенеровано</span>
+                                </div>
+                                <div id="toc-list" class="space-y-1.5 text-xs text-slate-600">
+                                    <!-- Dynamic TOC items go here -->
+                                </div>
+                            </div>
+
+                            <!-- Document Interactive Elements -->
+                            <div id="document-content" class="space-y-4">
+                                
+                                <!-- Element 1: Main Title -->
+                                <div onclick="selectElement(0)" id="doc-elem-0" class="doc-block p-2 rounded cursor-pointer border-2 border-transparent hover:border-brand-300 transition-all">
+                                    <div id="text-elem-0" class="text-content">Штучний Інтелект у Сучасному Світі</div>
+                                    <span class="elem-badge text-[10px] text-slate-400 font-mono mt-1 block">Стиль: <span id="badge-style-0" class="font-bold text-slate-600">Звичайний</span></span>
+                                </div>
+
+                                <!-- Element 2: Paragraph -->
+                                <div onclick="selectElement(1)" id="doc-elem-1" class="doc-block p-2 rounded cursor-pointer border-2 border-transparent hover:border-brand-300 transition-all">
+                                    <div id="text-elem-1" class="text-content">
+                                        Штучний інтелект (ШІ) — це галузь комп'ютерних наук, що займається створенням інтелектуальних машин, здатних виконувати завдання, які зазвичай потребують людського розуму.
+                                    </div>
+                                    <span class="elem-badge text-[10px] text-slate-400 font-mono mt-1 block">Стиль: <span id="badge-style-1" class="font-bold text-slate-600">Звичайний</span></span>
+                                </div>
+
+                                <!-- Element 3: Subheading 1 -->
+                                <div onclick="selectElement(2)" id="doc-elem-2" class="doc-block p-2 rounded cursor-pointer border-2 border-transparent hover:border-brand-300 transition-all">
+                                    <div id="text-elem-2" class="text-content">Історія розвитку технологій</div>
+                                    <span class="elem-badge text-[10px] text-slate-400 font-mono mt-1 block">Стиль: <span id="badge-style-2" class="font-bold text-slate-600">Звичайний</span></span>
+                                </div>
+
+                                <!-- Element 4: Paragraph -->
+                                <div onclick="selectElement(3)" id="doc-elem-3" class="doc-block p-2 rounded cursor-pointer border-2 border-transparent hover:border-brand-300 transition-all">
+                                    <div id="text-elem-3" class="text-content">
+                                        Перші кроки у створенні штучного інтелекту були зроблені ще в середині XX століття. Вченим Аланом Тюрінгом було запропоновано тест для визначення здатності машини демонструвати розумну поведінку.
+                                    </div>
+                                    <span class="elem-badge text-[10px] text-slate-400 font-mono mt-1 block">Стиль: <span id="badge-style-3" class="font-bold text-slate-600">Звичайний</span></span>
+                                </div>
+
+                                <!-- Element 5: Subheading 2 -->
+                                <div onclick="selectElement(4)" id="doc-elem-4" class="doc-block p-2 rounded cursor-pointer border-2 border-transparent hover:border-brand-300 transition-all">
+                                    <div id="text-elem-4" class="text-content">Майбутнє та етичні аспекти</div>
+                                    <span class="elem-badge text-[10px] text-slate-400 font-mono mt-1 block">Стиль: <span id="badge-style-4" class="font-bold text-slate-600">Звичайний</span></span>
+                                </div>
+
+                                <!-- Element 6: Paragraph -->
+                                <div onclick="selectElement(5)" id="doc-elem-5" class="doc-block p-2 rounded cursor-pointer border-2 border-transparent hover:border-brand-300 transition-all">
+                                    <div id="text-elem-5" class="text-content">
+                                        З розвитком технологій постають важливі питання етики, захисту персональних даних та автоматизації робочих місць.
+                                    </div>
+                                    <span class="elem-badge text-[10px] text-slate-400 font-mono mt-1 block">Стиль: <span id="badge-style-5" class="font-bold text-slate-600">Звичайний</span></span>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!-- Footer page counter -->
+                        <div class="border-t border-slate-200 pt-4 mt-8 flex justify-between text-[11px] text-slate-400">
+                            <span>Сторінка 1 з 1</span>
+                            <span>Тренажер: Стилі в текстових документах</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== TAB 3: QUIZ ==================== -->
+        <section id="content-quiz" class="tab-content hidden space-y-6">
+            <div class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm max-w-4xl mx-auto">
+                <div class="flex items-center justify-between border-b border-slate-200 pb-4 mb-6">
+                    <div>
+                        <h2 class="text-2xl font-bold text-slate-900">Контрольний тест знань</h2>
+                        <p class="text-sm text-slate-500">Дайте відповідь на 10 питань з теми "Стилі у текстових документах"</p>
+                    </div>
+                    <div id="quiz-badge" class="px-3 py-1 bg-brand-100 text-brand-700 font-bold rounded-full text-sm">
+                        Питання <span id="quiz-current-num">1</span> з 10
+                    </div>
+                </div>
+
+                <!-- Dynamic Question Card -->
+                <div id="quiz-container" class="space-y-6">
+                    <h3 id="quiz-question-text" class="text-lg font-bold text-slate-800">
+                        <!-- Question text inserted via JS -->
+                    </h3>
+
+                    <div id="quiz-options" class="space-y-3">
+                        <!-- Options generated dynamically -->
+                    </div>
+
+                    <!-- Explanation Box -->
+                    <div id="quiz-explanation" class="hidden p-4 rounded-xl text-sm leading-relaxed"></div>
+
+                    <!-- Action buttons -->
+                    <div class="flex justify-between items-center pt-4 border-t border-slate-200">
+                        <button id="quiz-prev-btn" onclick="prevQuestion()" class="px-4 py-2 bg-slate-100 text-slate-600 hover:bg-slate-200 font-semibold rounded-lg text-sm transition-all hidden">
+                            <i class="fa-solid fa-arrow-left mr-1"></i> Назад
+                        </button>
+                        <div></div>
+                        <button id="quiz-next-btn" onclick="nextQuestion()" disabled class="px-6 py-2 bg-brand-600 hover:bg-brand-700 disabled:opacity-50 text-white font-semibold rounded-lg text-sm transition-all">
+                            Далі <i class="fa-solid fa-arrow-right ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== TAB 4: SUMMARY REPORT ==================== -->
+        <section id="content-report" class="tab-content hidden space-y-6">
+            <div class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm max-w-3xl mx-auto text-center space-y-6">
+                
+                <div class="inline-block p-4 bg-amber-100 text-amber-600 rounded-full mb-2">
+                    <i class="fa-solid fa-award text-5xl"></i>
+                </div>
+
+                <h2 class="text-3xl font-extrabold text-slate-900">Результати навчання</h2>
+                <p class="text-slate-600">Ось підсумки вашої роботи в інтерактивному тренажері:</p>
+
+                <!-- Score Grid Summary -->
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 my-6">
+                    <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl">
+                        <span class="text-xs text-slate-500 uppercase font-semibold">Практичний Симулятор</span>
+                        <div id="summary-practice-score" class="text-3xl font-extrabold text-brand-600 mt-1">0 / 40</div>
+                        <span class="text-[11px] text-slate-400">балів</span>
+                    </div>
+
+                    <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl">
+                        <span class="text-xs text-slate-500 uppercase font-semibold">Тестування Знань</span>
+                        <div id="summary-quiz-score" class="text-3xl font-extrabold text-purple-600 mt-1">0 / 60</div>
+                        <span class="text-[11px] text-slate-400">балів</span>
+                    </div>
+
+                    <div class="p-4 bg-amber-50 border border-amber-200 rounded-xl">
+                        <span class="text-xs text-amber-700 uppercase font-semibold">Підсумкова Оцінка</span>
+                        <div id="summary-grade" class="text-3xl font-black text-amber-600 mt-1">1 бал</div>
+                        <span class="text-[11px] text-amber-700">за 12-бальною шкалою</span>
+                    </div>
+                </div>
+
+                <!-- Printable Certificate Preview -->
+                <div id="certificate" class="border-4 border-double border-slate-300 p-8 rounded-xl bg-gradient-to-b from-slate-50 to-white text-slate-800 space-y-4 shadow-inner relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-4 opacity-10">
+                        <i class="fa-solid fa-graduation-cap text-9xl"></i>
+                    </div>
+
+                    <span class="text-xs font-bold uppercase tracking-widest text-brand-600">Сертифікат проходження тренажера</span>
+                    <h3 class="text-2xl font-serif font-bold text-slate-900">Інформатика 9 клас</h3>
+                    <p class="text-sm text-slate-600">Підтверджує, що учень/учениця успішно опрацював(ла) тему:</p>
+                    <div class="text-lg font-bold text-slate-800 italic">"Використання стилів у текстових документах"</div>
+
+                    <div class="pt-4 max-w-sm mx-auto">
+                        <label class="block text-xs text-slate-500 mb-1 text-left">Введіть ваше ім'я та прізвище для сертифіката:</label>
+                        <input type="text" id="student-name-input" placeholder="Іван Іванов" oninput="updateCertName(this.value)" class="w-full px-4 py-2 border border-slate-300 rounded-lg text-center font-bold focus:outline-none focus:border-brand-500">
+                    </div>
+
+                    <div class="pt-4 flex justify-between items-center text-xs text-slate-500 border-t border-slate-200">
+                        <span>Оцінка: <strong id="cert-grade" class="text-slate-800">12 балів</strong></span>
+                        <span id="cert-date">Дата: --.--.----</span>
+                    </div>
+                </div>
+
+                <div class="flex justify-center space-x-4 pt-4">
+                    <button onclick="window.print()" class="bg-slate-800 hover:bg-slate-900 text-white font-semibold px-5 py-2.5 rounded-xl text-sm transition-all flex items-center">
+                        <i class="fa-solid fa-print mr-2"></i> Роздрукувати / Зберегти PDF
+                    </button>
+                    <button onclick="restartAll()" class="bg-brand-600 hover:bg-brand-700 text-white font-semibold px-5 py-2.5 rounded-xl text-sm transition-all flex items-center">
+                        <i class="fa-solid fa-rotate-right mr-2"></i> Пройти знову
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 text-xs py-4 text-center border-t border-slate-800 mt-auto">
+        <p>Навчальний тренажер з інформатики для 9 класу • Тема: "Використання стилів в текстових документах"</p>
+    </footer>
+
+    <!-- INTERACTIVE JAVASCRIPT LOGIC -->
+    <script>
+        
+        // --- GLOBAL STATE ---
+        let currentTab = 'theory';
+        let selectedElementIndex = 0;
+
+        // Document style definitions
+        let styles = {
+            heading1: {
+                fontFamily: 'Inter',
+                fontSize: 18, // pt
+                color: '#0f172a',
+                bold: true,
+                displayName: 'Заголовок 1'
+            },
+            heading2: {
+                fontFamily: 'Inter',
+                fontSize: 15, // pt
+                color: '#334155',
+                bold: true,
+                displayName: 'Заголовок 2'
+            },
+            normal: {
+                fontFamily: 'Inter',
+                fontSize: 12, // pt
+                color: '#475569',
+                bold: false,
+                displayName: 'Звичайний'
+            }
+        };
+
+        // Document paragraph objects
+        let docElements = [
+            { text: "Штучний Інтелект у Сучасному Світі", styleKey: 'normal', isHeading1Candidate: true },
+            { text: "Штучний інтелект (ШІ) — це галузь комп'ютерних наук, що займається створенням інтелектуальних машин, здатних виконувати завдання, які зазвичай потребують людського розуму.", styleKey: 'normal' },
+            { text: "Історія розвитку технологій", styleKey: 'normal', isHeading2Candidate: true },
+            { text: "Перші кроки у створенні штучного інтелекту були зроблені ще в середині XX століття. Вченим Аланом Тюрінгом було запропоновано тест для визначення здатності машини демонструвати розумну поведінку.", styleKey: 'normal' },
+            { text: "Майбутнє та етичні аспекти", styleKey: 'normal', isHeading2Candidate: true },
+            { text: "З розвитком технологій постають важливі питання етики, захисту персональних даних та автоматизації робочих місць.", styleKey: 'normal' }
+        ];
+
+        // Quests tracking
+        let quests = {
+            quest1: false, // Headings applied
+            quest2: false, // Heading 1 modified (blue & 22pt)
+            quest3: false, // Normal modified (Merriweather & 14pt)
+            quest4: false  // TOC inserted
+        };
+
+        // Quiz Questions Data (10 Questions for 9th Grade curriculum)
+        const quizQuestions = [
+            {
+                question: "Що таке стиль у текстовому процесорі?",
+                options: [
+                    "Будь-який малюнок або графічна фігура, вставлена в документ",
+                    "Набір збережених параметрів форматування, що має власну назву",
+                    "Шрифт, який використовується за замовчуванням при запуску ПК",
+                    "Спосіб збереження файла у форматі PDF"
+                ],
+                correct: 1,
+                explanation: "Стиль — це іменована сукупність параметрів форматування (символів чи абзаців), яку можна застосовувати до фрагментів тексту за один клік."
+            },
+            {
+                question: "Яка головна перевага використання стилів над прямим (ручним) форматуванням?",
+                options: [
+                    "Автоматичне виправлення орфографічних помилок",
+                    "Захист документа від видалення",
+                    "Швидкість, витриманість єдиного дизайну та можливість автооновлення всього документа",
+                    "Зменшення фізичного розміру файла на диску вдвічі"
+                ],
+                correct: 2,
+                explanation: "Завдяки стилям ви зберігаєте єдине оформлення документа та можете змінити вигляд десятків заголовків, змінивши лише сам стиль."
+            },
+            {
+                question: "Яку головну умову потрібно виконати для створення АВТОМАТИЧНОГО змісту документа?",
+                options: [
+                    "Пронумерувати всі сторінки документа вручну",
+                    "Оформити назви розділів та параграфів за допомогою стилів «Заголовок» (Heading)",
+                    "Виділити всі заголовки жирним шрифтом і червоним кольором",
+                    "Вставити таблицю на першій сторінці"
+                ],
+                correct: 1,
+                explanation: "Текстовий процесор формує автоматичний зміст, шукаючи в документі фрагменти тексту, до яких застосовано спеціальні стилі заголовків (Заголовок 1, 2, 3)."
+            },
+            {
+                question: "Які бувають основні типи стилів у MS Word?",
+                options: [
+                    "Легкі, середні та важкі",
+                    "Стилі абзацу, стилі знаку (символу), пов'язані стилі, стилі таблиць та списків",
+                    "Сині, червоні та зелені",
+                    "Локальні та мережеві"
+                ],
+                correct: 1,
+                explanation: "Основними типами є стилі Абзацу (¶), Знаку (a), Пов'язані (¶a), Таблиць та Списків."
+            },
+            {
+                question: "Що відбудеться з текстом у документі, якщо змінити колір у налаштуваннях стилю «Заголовок 1»?",
+                options: [
+                    "Зміниться колір лише поточного виділеного заголовка",
+                    "Колір зміниться у ВСІХ заголовків документа, до яких застосовано стиль «Заголовок 1»",
+                    "Нічого не зміниться, поки ви не перезавантажите комп'ютер",
+                    "Документ видалить усі заголовки"
+                ],
+                correct: 1,
+                explanation: "Це одна з ключових властивостей стилів: зміна налаштувань стилю автоматично оновлює вигляд усіх пов'язаних з ним елементів."
+            },
+            {
+                question: "Який стиль за замовчуванням застосовується до всього звичайного тексту в MS Word?",
+                options: [
+                    "Основний / Звичайний (Normal)",
+                    "Заголовок 1",
+                    "Строгий",
+                    "Цитата"
+                ],
+                correct: 0,
+                explanation: "Базовим стилем для набору звичайного тексту у MS Word є стиль «Звичайний» (Normal)."
+            },
+            {
+                question: "До яких елементів застосовується «Стиль Знаку (Символу)»?",
+                options: [
+                    "Виключно до всієї сторінки разом із полями",
+                    "До окремих виділених слів чи літер всередині абзацу",
+                    "Тільки до таблиць",
+                    "До номера сторінки у колонтитулі"
+                ],
+                correct: 1,
+                explanation: "Стиль знаку форматує окремі виділені символи (шрифт, розмір, колір), не впливаючи на абзацні параметри (вирівнювання, інтервали)."
+            },
+            {
+                question: "Де на стрічці у MS Word знаходиться панель із бібліотекою стилів?",
+                options: [
+                    "Вкладка «Вставка»",
+                    "Вкладка «Основна» (Home) -> група «Стилі»",
+                    "Вкладка «Макет»",
+                    "Вкладка «Рецензування»"
+                ],
+                correct: 1,
+                explanation: "Основна галерея стилів розташована на головній вкладці «Основна» (Home) у групі «Стилі»."
+            },
+            {
+                question: "Як очистити прямо форматований текст та повернути його до базового стилю?",
+                options: [
+                    "Видалити весь текст та набрати знову",
+                    "Натиснути кнопку «Очистити все форматування» (Clear All Formatting)",
+                    "Закрити документ без збереження",
+                    "Змінити мову клавіатури"
+                ],
+                correct: 1,
+                explanation: "Кнопка «Очистити форматування» знімає всі ручні налаштування та повертає текст до стандартного стилю «Звичайний»."
+            },
+            {
+                question: "Як панель «Навігація» у текстовому процесорі використовує стилі?",
+                options: [
+                    "Відображає структуру документа на основі заголовочних стилів для швидкого переходу між розділами",
+                    "Шукає граматичні помилки",
+                    "Перекладає текст іншою мовою",
+                    "Рахує кількість роздрукованих сторінок"
+                ],
+                correct: 0,
+                explanation: "Панель «Навігація» будує інтерактивне дерево заголовків (Заголовок 1, 2, 3), що дозволяє миттєво переходити до потрібного розділу."
+            }
+        ];
+
+        let currentQuestionIndex = 0;
+        let quizUserAnswers = new Array(quizQuestions.length).fill(null);
+
+        // --- CORE FUNCTIONS ---
+
+        function switchTab(tabId) {
+            currentTab = tabId;
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('bg-brand-600', 'text-white');
+                btn.classList.add('text-slate-300');
+            });
+
+            document.getElementById(`content-${tabId}`).classList.remove('hidden');
+            const activeBtn = document.getElementById(`tab-${tabId}`);
+            activeBtn.classList.add('bg-brand-600', 'text-white');
+            activeBtn.classList.remove('text-slate-300');
+
+            if (tabId === 'report') {
+                calculateFinalReport();
+            }
+        }
+
+        // --- PRACTICE SIMULATOR LOGIC ---
+        
+        function selectElement(index) {
+            selectedElementIndex = index;
+            
+            // Highlight selected block
+            document.querySelectorAll('.doc-block').forEach((el, idx) => {
+                if (idx === index) {
+                    el.classList.add('border-brand-500', 'bg-brand-50/30');
+                    el.classList.remove('border-transparent');
+                } else {
+                    el.classList.remove('border-brand-500', 'bg-brand-50/30');
+                    el.classList.add('border-transparent');
+                }
+            });
+
+            // Set ribbon editor select option to current element's style
+            const currentStyleKey = docElements[index].styleKey;
+            document.getElementById('style-target-select').value = currentStyleKey;
+            updateEditorControlsFromStyle();
+        }
+
+        function applyStyleToSelected(styleKey) {
+            docElements[selectedElementIndex].styleKey = styleKey;
+            renderDocument();
+            checkMissions();
+        }
+
+        function updateEditorControlsFromStyle() {
+            const targetStyleKey = document.getElementById('style-target-select').value;
+            const styleObj = styles[targetStyleKey];
+
+            document.getElementById('style-font-family').value = styleObj.fontFamily;
+            document.getElementById('style-font-size').value = styleObj.fontSize;
+            document.getElementById('style-color').value = styleObj.color;
+        }
+
+        function modifyStyleProperty(prop, value) {
+            const targetStyleKey = document.getElementById('style-target-select').value;
+            if (prop === 'fontSize') value = parseInt(value) || 12;
+
+            styles[targetStyleKey][prop] = value;
+            renderDocument();
+            checkMissions();
+        }
+
+        function insertTOC() {
+            document.getElementById('toc-container').classList.remove('hidden');
+            renderTOC();
+            quests.quest4 = true;
+            checkMissions();
+        }
+
+        function renderTOC() {
+            const tocList = document.getElementById('toc-list');
+            tocList.innerHTML = '';
+
+            let count = 0;
+            docElements.forEach((elem) => {
+                if (elem.styleKey === 'heading1' || elem.styleKey === 'heading2') {
+                    count++;
+                    const item = document.createElement('div');
+                    item.className = elem.styleKey === 'heading1' 
+                        ? 'font-bold text-slate-800 flex justify-between' 
+                        : 'pl-4 text-slate-600 flex justify-between';
+                    
+                    item.innerHTML = `
+                        <span>${elem.text}</span>
+                        <span class="border-b border-dotted border-slate-300 flex-1 mx-2"></span>
+                        <span class="font-mono">ст. 1</span>
+                    `;
+                    tocList.appendChild(item);
+                }
+            });
+
+            if (count === 0) {
+                tocList.innerHTML = '<span class="text-slate-400 italic">Заголовки не знайдені. Застосуйте стилі "Заголовок 1" або "Заголовок 2" до тексту.</span>';
+            }
+        }
+
+        function renderDocument() {
+            docElements.forEach((elem, index) => {
+                const textDiv = document.getElementById(`text-elem-${index}`);
+                const badgeSpan = document.getElementById(`badge-style-${index}`);
+                const styleObj = styles[elem.styleKey];
+
+                // Apply dynamic CSS based on style definition
+                textDiv.style.fontFamily = styleObj.fontFamily === 'Merriweather' ? "'Merriweather', serif" : "'Inter', sans-serif";
+                textDiv.style.fontSize = `${styleObj.fontSize}pt`;
+                textDiv.style.color = styleObj.color;
+                textDiv.style.fontWeight = styleObj.bold ? '700' : '400';
+
+                // Badge text
+                badgeSpan.innerText = styleObj.displayName;
+            });
+
+            // Re-render TOC if visible
+            if (!document.getElementById('toc-container').classList.contains('hidden')) {
+                renderTOC();
+            }
+        }
+
+        function checkMissions() {
+            // Quest 1: Heading 1 on elem 0 and Heading 2 on elem 2 & 4
+            if (docElements[0].styleKey === 'heading1' && docElements[2].styleKey === 'heading2' && docElements[4].styleKey === 'heading2') {
+                quests.quest1 = true;
+            }
+
+            // Quest 2: Heading 1 is blue (#1d4ed8) and 22pt
+            if (styles.heading1.color.toLowerCase() === '#1d4ed8' && styles.heading1.fontSize >= 22) {
+                quests.quest2 = true;
+            }
+
+            // Quest 3: Normal style is Merriweather and 14pt
+            if (styles.normal.fontFamily === 'Merriweather' && styles.normal.fontSize >= 14) {
+                quests.quest3 = true;
+            }
+
+            // Update UI Quest Status Badges
+            updateQuestUI('quest-1', quests.quest1);
+            updateQuestUI('quest-2', quests.quest2);
+            updateQuestUI('quest-3', quests.quest3);
+            updateQuestUI('quest-4', quests.quest4);
+
+            updateOverallScore();
+        }
+
+        function updateQuestUI(questId, isDone) {
+            const card = document.getElementById(questId);
+            const icon = document.getElementById(`${questId}-icon`);
+
+            if (isDone) {
+                card.classList.remove('bg-slate-50', 'border-slate-200');
+                card.classList.add('bg-emerald-50', 'border-emerald-300');
+                icon.className = 'fa-solid fa-circle-check text-emerald-600 text-base';
+            } else {
+                card.classList.add('bg-slate-50', 'border-slate-200');
+                card.classList.remove('bg-emerald-50', 'border-emerald-300');
+                icon.className = 'fa-regular fa-circle-dot text-slate-400';
+            }
+        }
+
+        function resetPractice() {
+            // Reset elements
+            docElements.forEach(e => e.styleKey = 'normal');
+            
+            // Reset style definitions
+            styles.heading1 = { fontFamily: 'Inter', fontSize: 18, color: '#0f172a', bold: true, displayName: 'Заголовок 1' };
+            styles.heading2 = { fontFamily: 'Inter', fontSize: 15, color: '#334155', bold: true, displayName: 'Заголовок 2' };
+            styles.normal = { fontFamily: 'Inter', fontSize: 12, color: '#475569', bold: false, displayName: 'Звичайний' };
+
+            document.getElementById('toc-container').classList.add('hidden');
+
+            quests = { quest1: false, quest2: false, quest3: false, quest4: false };
+
+            selectElement(0);
+            renderDocument();
+            checkMissions();
+        }
+
+        // --- QUIZ LOGIC ---
+        
+        function renderQuizQuestion(index) {
+            const q = quizQuestions[index];
+            document.getElementById('quiz-current-num').innerText = index + 1;
+            document.getElementById('quiz-question-text').innerText = `${index + 1}. ${q.question}`;
+
+            const optionsContainer = document.getElementById('quiz-options');
+            optionsContainer.innerHTML = '';
+
+            const expBox = document.getElementById('quiz-explanation');
+            expBox.classList.add('hidden');
+
+            q.options.forEach((opt, optIdx) => {
+                const btn = document.createElement('button');
+                btn.className = `w-full text-left p-4 rounded-xl border text-sm transition-all flex items-center justify-between `;
+                
+                const userAnswer = quizUserAnswers[index];
+
+                if (userAnswer === null) {
+                    btn.className += 'bg-slate-50 border-slate-200 hover:border-brand-400 hover:bg-brand-50/50';
+                } else {
+                    if (optIdx === q.correct) {
+                        btn.className += 'bg-emerald-50 border-emerald-400 text-emerald-900 font-semibold';
+                    } else if (optIdx === userAnswer) {
+                        btn.className += 'bg-rose-50 border-rose-400 text-rose-900 font-semibold';
+                    } else {
+                        btn.className += 'bg-slate-50 border-slate-200 opacity-60';
+                    }
+                }
+
+                btn.innerHTML = `
+                    <span>${opt}</span>
+                    ${userAnswer !== null && optIdx === q.correct ? '<i class="fa-solid fa-check text-emerald-600"></i>' : ''}
+                    ${userAnswer !== null && optIdx === userAnswer && optIdx !== q.correct ? '<i class="fa-solid fa-xmark text-rose-600"></i>' : ''}
+                `;
+
+                if (userAnswer === null) {
+                    btn.onclick = () => selectQuizAnswer(index, optIdx);
+                }
+
+                optionsContainer.appendChild(btn);
+            });
+
+            // Show explanation if already answered
+            if (quizUserAnswers[index] !== null) {
+                expBox.classList.remove('hidden');
+                const isCorrect = quizUserAnswers[index] === q.correct;
+                expBox.className = `p-4 rounded-xl text-sm leading-relaxed ${isCorrect ? 'bg-emerald-100 text-emerald-900' : 'bg-rose-100 text-rose-900'}`;
+                expBox.innerHTML = `<strong>${isCorrect ? 'Правильно!' : 'Невірно!'}</strong> ${q.explanation}`;
+                document.getElementById('quiz-next-btn').disabled = false;
+            } else {
+                document.getElementById('quiz-next-btn').disabled = true;
+            }
+
+            // Prev button visibility
+            document.getElementById('quiz-prev-btn').classList.toggle('hidden', index === 0);
+        }
+
+        function selectQuizAnswer(qIndex, optionIndex) {
+            quizUserAnswers[qIndex] = optionIndex;
+            renderQuizQuestion(qIndex);
+            updateOverallScore();
+        }
+
+        function nextQuestion() {
+            if (currentQuestionIndex < quizQuestions.length - 1) {
+                currentQuestionIndex++;
+                renderQuizQuestion(currentQuestionIndex);
+            } else {
+                switchTab('report');
+            }
+        }
+
+        function prevQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                renderQuizQuestion(currentQuestionIndex);
+            }
+        }
+
+        // --- SCORE & REPORT CALCULATION ---
+        
+        function updateOverallScore() {
+            // Practice score: 10 points per mission = 40 max
+            let practiceScore = 0;
+            if (quests.quest1) practiceScore += 10;
+            if (quests.quest2) practiceScore += 10;
+            if (quests.quest3) practiceScore += 10;
+            if (quests.quest4) practiceScore += 10;
+
+            // Quiz score: 6 points per correct answer = 60 max
+            let quizScore = 0;
+            quizUserAnswers.forEach((ans, idx) => {
+                if (ans === quizQuestions[idx].correct) {
+                    quizScore += 6;
+                }
+            });
+
+            const totalScore = practiceScore + quizScore;
+
+            // Update Header
+            document.getElementById('header-score').innerText = `${totalScore} / 100`;
+            document.getElementById('header-progress').innerText = `${totalScore}%`;
+
+            return { practiceScore, quizScore, totalScore };
+        }
+
+        function calculateFinalReport() {
+            const { practiceScore, quizScore, totalScore } = updateOverallScore();
+
+            document.getElementById('summary-practice-score').innerText = `${practiceScore} / 40`;
+            document.getElementById('summary-quiz-score').innerText = `${quizScore} / 60`;
+
+            // Ukrainian 12-point grading scale formula
+            let grade = 1;
+            if (totalScore >= 95) grade = 12;
+            else if (totalScore >= 88) grade = 11;
+            else if (totalScore >= 80) grade = 10;
+            else if (totalScore >= 72) grade = 9;
+            else if (totalScore >= 64) grade = 8;
+            else if (totalScore >= 55) grade = 7;
+            else if (totalScore >= 46) grade = 6;
+            else if (totalScore >= 37) grade = 5;
+            else if (totalScore >= 28) grade = 4;
+            else if (totalScore >= 19) grade = 3;
+            else if (totalScore >= 10) grade = 2;
+
+            document.getElementById('summary-grade').innerText = `${grade} балів`;
+            document.getElementById('cert-grade').innerText = `${grade} балів (${totalScore}% виконання)`;
+
+            // Set today's date
+            const today = new Date().toLocaleDateString('uk-UA');
+            document.getElementById('cert-date').innerText = `Дата: ${today}`;
+        }
+
+        function updateCertName(name) {
+            // Updated directly in realtime
+        }
+
+        function restartAll() {
+            resetPractice();
+            quizUserAnswers = new Array(quizQuestions.length).fill(null);
+            currentQuestionIndex = 0;
+            renderQuizQuestion(0);
+            switchTab('theory');
+        }
+
+        // --- INIT ON LOAD ---
+        window.onload = function() {
+            selectElement(0);
+            renderDocument();
+            renderQuizQuestion(0);
+            updateOverallScore();
+        };
+    </script>
+</body>
+</html>
